@@ -14,7 +14,10 @@ if (!$db) {
 $db->query("SET NAMES 'utf8'");
 
 /* Read all person from db */
-$sqlQueryContact = "SELECT civility, lastname, firstname FROM contact AS co JOIN civility AS ci ON co.civility_id = ci.id";
-$result = $db->query($sqlQueryContact);
+$result = $db->query("SELECT civility, lastname, firstname FROM contact AS co JOIN civility AS ci 
+                      ON co.civility_id = ci.id ORDER BY lastname ASC");
 
+while ($person = $result->fetch_assoc()) {
+    echo $person['civility'] . $person['lastname'] . $person['firstname'] ;
+  }
 
